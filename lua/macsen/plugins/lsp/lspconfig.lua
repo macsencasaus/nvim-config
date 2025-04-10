@@ -21,16 +21,16 @@ return {
 				local opts = { buffer = ev.buf, silent = true }
 
 				opts.desc = "Show LSP references"
-				keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
+				keymap.set("n", "gr", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
 
 				opts.desc = "Go to declaration"
 				keymap.set("n", "gD", vim.lsp.buf.declaration, opts) -- go to declaration
 
 				opts.desc = "Show LSP definitions"
-				keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
+				keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>zz", opts) -- show lsp definitions
 
 				opts.desc = "Show LSP implementations"
-				keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts) -- show lsp implementations
+				keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>zz", opts) -- show lsp implementations
 
 				opts.desc = "Show LSP type definitions"
 				keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts) -- show lsp type definitions
@@ -79,32 +79,23 @@ return {
 			["tsserver"] = function()
 				lspconfig["tsserver"].setup({
 					capabilities = capabilities,
-					filetypes = { "javascript", "typescript" },
+					filetypes = { "javascript", "typescript", "typescriptreact" },
 				})
 			end,
-			["graphql"] = function()
-				-- configure graphql language server
-				lspconfig["graphql"].setup({
-					capabilities = capabilities,
-					filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
-				})
-			end,
-			["emmet_ls"] = function()
-				-- configure emmet language server
-				lspconfig["emmet_ls"].setup({
-					capabilities = capabilities,
-					filetypes = {
-						"html",
-						"typescriptreact",
-						"javascriptreact",
-						"css",
-						"sass",
-						"scss",
-						"less",
-						"svelte",
-					},
-				})
-			end,
+			-- ["rust-analyzer"] = function()
+			-- 	lspconfig["rust-analyzer"].setup({
+			-- 		capabilities = capabilities,
+			-- 		filetypes = { "rust" },
+			-- 		settings = {
+			-- 			check = {
+			-- 				command = "clippy",
+			-- 			},
+			-- 			diagnostic = {
+			-- 				enable = true,
+			-- 			},
+			-- 		},
+			-- 	})
+			-- end,
 			["lua_ls"] = function()
 				-- configure lua server (with special settings)
 				lspconfig["lua_ls"].setup({
@@ -121,6 +112,18 @@ return {
 							},
 						},
 					},
+				})
+			end,
+			["templ"] = function()
+				lspconfig["templ"].setup({
+					capabilities = capabilities,
+					filetypes = { "templ" },
+				})
+			end,
+			["html"] = function()
+				lspconfig["html"].setup({
+					capabilities = capabilities,
+					filetypes = { "html" },
 				})
 			end,
 		})

@@ -27,7 +27,20 @@ opt.clipboard:append("unnamedplus")
 opt.splitright = true
 opt.splitbelow = true
 
-opt.wrap = true
+-- opt.wrap = true
 opt.laststatus = 3
 
+o.foldmethod = "expr"
+o.foldexpr = "nvim_treesitter#foldexpr()"
+
 o.showmode = false
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "haskell",
+	callback = function()
+		opt.tabstop = 2
+		opt.shiftwidth = 2
+	end,
+})
+
+vim.filetype.add({ extension = { templ = "templ" } })

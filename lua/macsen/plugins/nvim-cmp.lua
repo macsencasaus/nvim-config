@@ -29,6 +29,7 @@ return {
 			completion = {
 				completeopt = "menu,menuone,preview,noselect",
 				winhighlight = "Normal:Pmeua,FloatBorder:Pmenu,Search:None",
+				autocomplete = false,
 				col_offset = -3,
 				side_padding = 0,
 			},
@@ -83,6 +84,26 @@ return {
 					"i",
 					"s",
 				}),
+				["<C-a>"] = cmp.mapping({
+					i = function()
+						if cmp.visible() then
+							-- require("cmp.notify")("visible")
+							cmp.abort()
+						else
+							-- require("notify")("not visible")
+							cmp.complete()
+						end
+					end,
+					c = function()
+						if cmp.visible() then
+							-- require("notify")("visible")
+							cmp.close()
+						else
+							-- require("notify")("not visible")
+							cmp.complete()
+						end
+					end,
+				}),
 			}),
 
 			-- sources for autocompletion
@@ -92,19 +113,11 @@ return {
 				{ name = "buffer" }, -- text within current buffer
 				{ name = "path" }, -- file system paths
 			}),
-
-			-- configure lspkind for vs-code like pictograms in completion menu
-			-- formatting = {
-			-- 	format = lspkind.cmp_format({
-			-- 		maxwidth = 50,
-			-- 		ellipsis_char = "...",
-			-- 	}),
-			-- },
 		})
 
 		-- Customization for Pmenu
-		vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#1A1B26", fg = "NONE" })
-		vim.api.nvim_set_hl(0, "Pmenu", { fg = "#C5CDD9", bg = "#1A1B26" })
+		vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#353C49", fg = "none" })
+		vim.api.nvim_set_hl(0, "pmenu", { fg = "#c5cdd9", bg = "#2F3541" })
 
 		vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { fg = "#7E8294", bg = "NONE", strikethrough = true })
 		vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { fg = "#82AAFF", bg = "NONE", bold = true })

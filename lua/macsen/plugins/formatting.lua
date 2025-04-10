@@ -15,18 +15,40 @@ return {
 				json = { "prettier" },
 				lua = { "stylua" },
 				python = { "isort", "black" },
+				-- go = { "gopls" },
+				templ = { "templ" },
+				c = { "clang-format" },
+				cpp = { "clang-format" },
+				cuda = { "clang-format" },
+				rust = { "rustfmt" },
+				sql = { "sql-formatter" },
 			},
-			format_on_save = {
-				lsp_fallback = true,
-				async = false,
-			},
+			-- lsp_fallback = true,
+			-- async=false,
+			-- format_on_save = {
+			-- 	lsp_fallback = true,
+			-- 	async = false,
+			-- },
 		})
 
-		vim.keymap.set({ "n", "v" }, "<leader>mp", function()
+		conform.formatters.prettier = {
+			prepend_args = function(self, ctx)
+				return { "--tab-width", "4" }
+			end,
+		}
+
+		vim.keymap.set({ "n", "v" }, "<leader>m", function()
 			conform.format({
 				lsp_fallback = true,
 				async = false,
 			})
-		end, { desc = "Format file or rangek" })
+		end, { desc = "Format file or range" })
+
+		vim.keymap.set({ "i" }, "<C-m>", function()
+			conform.format({
+				lsp_fallback = true,
+				async = false,
+			})
+		end, { noremap = true, desc = "Format file or range" })
 	end,
 }

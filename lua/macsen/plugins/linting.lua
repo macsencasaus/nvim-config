@@ -5,27 +5,14 @@ return {
 		local lint = require("lint")
 
 		lint.linters_by_ft = {
-			javascript = { "eslint_d" },
-			typescript = { "eslint_d" },
-			javascriptreact = { "eslint_d" },
-			typescriptreact = { "eslint_d" },
+			-- javascript = { "eslint_d" },
+			-- typescript = { "eslint_d" },
+			-- javascriptreact = { "eslint_d" },
+			-- typescriptreact = { "eslint_d" },
 			python = { "pylint" },
 		}
 
 		local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
-
-		-- local eslint = lint.linters.eslint_d
-
-		-- eslint.args = {
-		-- 	"--no-warned-ignored",
-		-- 	"--format",
-		-- 	"json",
-		-- 	"--stdin",
-		-- 	"--stdin-filename",
-		-- 	function()
-		-- 		return vim.api.nvim_buf_get_name(0)
-		-- 	end,
-		-- }
 
 		local venv_path =
 			'import sys; sys.path.append("/home/macsen/.local/lib/python3.12/site-packages"); import pylint_venv; pylint_venv.inithook(force_venv_activation=True, quiet=True)'

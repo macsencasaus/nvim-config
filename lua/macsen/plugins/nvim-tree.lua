@@ -91,11 +91,11 @@ return {
 			"<cmd>NvimTreeToggle<CR><cmd>setlocal relativenumber<CR>",
 			{ desc = "Toggle file explorer" }
 		)
-		keymap.set(
-			"n",
-			"<leader>e",
-			"<cmd>NvimTreeFocus<CR><cmd>setlocal relativenumber<CR>",
-			{ desc = "Toggle file explorer at current file" }
-		)
+		-- keymap.set(
+		-- 	"n",
+		-- 	"<leader>e",
+		-- 	"<cmd>NvimTreeFocus<CR><cmd>setlocal relativenumber<CR>",
+		-- 	{ desc = "Toggle file explorer at current file" }
+		-- )
 	end,
 }
