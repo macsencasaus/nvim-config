@@ -32,6 +32,7 @@ opt.laststatus = 3
 
 o.foldmethod = "expr"
 o.foldexpr = "nvim_treesitter#foldexpr()"
+opt.foldlevel = 99
 
 o.showmode = false
 

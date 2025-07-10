@@ -58,3 +58,19 @@ keymap.set(
 	vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true),
 	{ desc = "Escape terminal mode " }
 )
+
+keymap.set("n", "<leader>o", '<cmd>call append(line("."), "")<cr>j', { desc = "insert line below" })
+keymap.set("n", "<leader>O", '<cmd>call append(line(".") - 1, "")<cr>k', { desc = "insert line above" })
+
+keymap.set("n", "<leader>tt", function()
+    local current_tabstop = vim.opt.tabstop:get();
+	if current_tabstop == 4 then
+		vim.opt.tabstop = 2
+		vim.opt.shiftwidth = 2
+	elseif current_tabstop == 2 then
+		vim.opt.tabstop = 4
+		vim.opt.shiftwidth = 4
+	end
+end, { desc = "toggle identation between 2 and 4" })
+
+keymap.set("n", ",,", "cc<esc>", { desc = "clear line" })
