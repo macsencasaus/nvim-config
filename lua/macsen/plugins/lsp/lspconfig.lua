@@ -7,12 +7,6 @@ return {
 		{ "folke/neodev.nvim", opts = {} },
 	},
 	config = function()
-		local lspconfig = require("lspconfig")
-
-		local mason_lspconfig = require("mason-lspconfig")
-
-		local cmp_nvim_lsp = require("cmp_nvim_lsp")
-
 		local keymap = vim.keymap
 
 		vim.api.nvim_create_autocmd("LspAttach", {
@@ -61,71 +55,50 @@ return {
 			end,
 		})
 
-		local capabilities = cmp_nvim_lsp.default_capabilities()
-
-		local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
-		for type, icon in pairs(signs) do
-			local hl = "DiagnosticSign" .. type
-			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-		end
-
-		mason_lspconfig.setup_handlers({
-			-- default handler for installed servers
-			function(server_name)
-				lspconfig[server_name].setup({
-					capabilities = capabilities,
-				})
-			end,
-			["tsserver"] = function()
-				lspconfig["tsserver"].setup({
-					capabilities = capabilities,
-					filetypes = { "javascript", "typescript", "typescriptreact" },
-				})
-			end,
-			-- ["rust-analyzer"] = function()
-			-- 	lspconfig["rust-analyzer"].setup({
-			-- 		capabilities = capabilities,
-			-- 		filetypes = { "rust" },
-			-- 		settings = {
-			-- 			check = {
-			-- 				command = "clippy",
-			-- 			},
-			-- 			diagnostic = {
-			-- 				enable = true,
-			-- 			},
-			-- 		},
-			-- 	})
-			-- end,
-			["lua_ls"] = function()
-				-- configure lua server (with special settings)
-				lspconfig["lua_ls"].setup({
-					capabilities = capabilities,
-					settings = {
-						Lua = {
-							-- make the language server recognize "vim" global
-							diagnostics = {
-								globals = { "vim" },
-								disable = { "missing-fields" },
-							},
-							completion = {
-								callSnippet = "Replace",
-							},
-						},
-					},
-				})
-			end,
-			["templ"] = function()
-				lspconfig["templ"].setup({
-					capabilities = capabilities,
-					filetypes = { "templ" },
-				})
-			end,
-			["html"] = function()
-				lspconfig["html"].setup({
-					capabilities = capabilities,
-					filetypes = { "html" },
-				})
-			end,
+		vim.diagnostic.config({
+			virtual_text = {
+				prefix = "●",
+			},
+			severity_sort = true,
+			signs = {
+				text = {
+					[vim.diagnostic.severity.ERROR] = " ",
+					[vim.diagnostic.severity.WARN] = " ",
+					[vim.diagnostic.severity.HINT] = "󰠠 ",
+					[vim.diagnostic.severity.INFO] = " ",
+				},
+			},
 		})
+
+		vim.lsp.config("lua_ls", {
+			settings = {
+				Lua = {
+					diagnostics = {
+						globals = { "vim" },
+						disable = { "missing-fields" },
+					},
+				},
+			},
+		})
+
+		vim.lsp.config("clangd", {
+			cmd = { "clangd" },
+			filetypes = { "c", "cpp", "cuda" },
+			root_markers = { { ".clangd", ".clang-tidy", "compile_commands.json", "compile_flags.txt" }, ".git" },
+		})
+		vim.lsp.enable("clangd")
+
+		local llvm_dev_dir = os.getenv("LLVM_DEV")
+		if llvm_dev_dir then
+			vim.lsp.config("tablegen-lsp", {
+				cmd = {
+					"tblgen-lsp-server",
+					"--tablegen-compilation-database=" .. llvm_dev_dir .. "/build/tablegen_compile_commands.yml",
+				},
+				filetypes = { "tablegen" },
+				root_markers = { "build", ".git" },
+			})
+			vim.lsp.enable("tablegen-lsp")
+		end
 	end,
 }

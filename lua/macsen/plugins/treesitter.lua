@@ -51,6 +51,20 @@ return {
 			},
 		}
 
+		vim.filetype.add({
+			extension = {
+				zag = "zag",
+			},
+		})
+
+		parser_config.zag = {
+			install_info = {
+				url = "https://github.com/macsencasaus/tree-sitter-zag",
+				files = { "src/parser.c" },
+				branch = "main",
+			},
+		}
+
 		vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 			pattern = "*.ll",
 			callback = function()
@@ -85,6 +99,5 @@ return {
 				vim.bo.filetype = "html"
 			end,
 		})
-
 	end,
 }

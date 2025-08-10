@@ -9,16 +9,9 @@ return {
 		dependencies = {
 			"rktjmp/lush.nvim",
 		},
-	},
-	{
-		dir = "/home/macsen/code/morebones.nvim",
-		priorty = 1000,
-		dependencies = {
-			"rktjmp/lush.nvim",
-		},
-		config = function()
-			vim.cmd("colorscheme nordbones")
-		end,
+        config = function()
+            vim.cmd("colorscheme rosebones")
+        end,
 	},
 	{
 		"folke/tokyonight.nvim",

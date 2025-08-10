@@ -11,15 +11,20 @@ keymap.set("n", "<leader>=", "<C-a>", { desc = "Increment number" })
 keymap.set("n", "<leader>-", "<C-x>", { desc = "Decrement number" })
 
 -- window management
-keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
-keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" })
+-- keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
+-- keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" })
 keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" })
 keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" })
+keymap.set("n", "<leader>sl", "<c-w>10>", { desc = "increase view width" })
+keymap.set("n", "<leader>sh", "<c-w>10<", { desc = "decrease view width" })
+keymap.set("n", "<leader>sj", "<c-w>10+", { desc = "increase view height" })
+keymap.set("n", "<leader>sk", "<c-w>10-", { desc = "decrease view height" })
+
 
 -- tab management
-keymap.set("n", "<leader>o", "<cmd>tabnew<CR>", { desc = "Open new tab" })
-keymap.set("n", "<leader>x", "<cmd>tabclose<CR>", { desc = "Close current tab" })
-keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
+-- keymap.set("n", "<leader>o", "<cmd>tabnew<CR>", { desc = "Open new tab" })
+-- keymap.set("n", "<leader>x", "<cmd>tabclose<CR>", { desc = "Close current tab" })
+-- keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
 
 -- navigation within insert mode
 keymap.set("i", "<C-h>", "<Left>", { desc = "Move left" })

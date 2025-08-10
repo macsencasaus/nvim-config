@@ -15,13 +15,9 @@ return {
 		mason_lspconfig.setup({
 			ensure_installed = {
 				"lua_ls",
-                "bashls",
 				"pyright",
 				"html",
-				"tsserver",
 				"gopls",
-				"clangd",
-				"hls",
 				"templ",
 			},
 		})
@@ -34,8 +30,6 @@ return {
 				"black",
 				"pylint",
 				"clang-format",
-				"rust-analyzer",
-                "rustfmt",
 			},
 		})
 	end,

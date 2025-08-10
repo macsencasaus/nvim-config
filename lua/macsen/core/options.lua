@@ -1,6 +1,8 @@
 local opt = vim.opt
 local o = vim.o
 
+opt.mouse = ""
+
 opt.relativenumber = true
 opt.number = true
 
@@ -45,3 +47,5 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.filetype.add({ extension = { templ = "templ" } })
+
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"

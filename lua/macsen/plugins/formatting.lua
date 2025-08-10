@@ -37,6 +37,12 @@ return {
 			end,
 		}
 
+		conform.formatters["clang-format"] = {
+			prepend_args = function(self, ctx)
+				return { "--fallback-style=Chromium" }
+			end,
+		}
+
 		vim.keymap.set({ "n", "v" }, "<leader>m", function()
 			conform.format({
 				lsp_fallback = true,
