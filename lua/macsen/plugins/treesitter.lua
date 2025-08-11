@@ -51,10 +51,12 @@ return {
 			},
 		}
 
-		vim.filetype.add({
-			extension = {
-				zag = "zag",
-			},
+		vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+			pattern = "*.zag",
+			callback = function()
+				vim.bo.filetype = "zag"
+				vim.bo.commentstring = "// %s"
+			end,
 		})
 
 		parser_config.zag = {
