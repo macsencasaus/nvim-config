@@ -22,6 +22,7 @@ return {
 				cuda = { "clang-format" },
 				rust = { "rustfmt" },
 				sql = { "sql-formatter" },
+				haskell = { "ormolu" },
 			},
 			-- lsp_fallback = true,
 			-- async=false,
@@ -47,7 +48,14 @@ return {
 			conform.format({
 				lsp_fallback = true,
 				async = false,
-			})
+			}, function(err, did_edit)
+				if did_edit == nil then
+					local save_cursor = vim.api.nvim_win_get_cursor(0)
+					vim.cmd([[%s/\s\+$//e]])
+					vim.cmd("nohlsearch")
+					vim.api.nvim_win_set_cursor(0, save_cursor)
+				end
+			end)
 		end, { desc = "Format file or range" })
 
 		vim.keymap.set({ "i" }, "<C-m>", function()

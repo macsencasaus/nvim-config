@@ -20,7 +20,6 @@ keymap.set("n", "<leader>sh", "<c-w>10<", { desc = "decrease view width" })
 keymap.set("n", "<leader>sj", "<c-w>10+", { desc = "increase view height" })
 keymap.set("n", "<leader>sk", "<c-w>10-", { desc = "decrease view height" })
 
-
 -- tab management
 -- keymap.set("n", "<leader>o", "<cmd>tabnew<CR>", { desc = "Open new tab" })
 -- keymap.set("n", "<leader>x", "<cmd>tabclose<CR>", { desc = "Close current tab" })
@@ -68,7 +67,7 @@ keymap.set("n", "<leader>o", '<cmd>call append(line("."), "")<cr>j', { desc = "i
 keymap.set("n", "<leader>O", '<cmd>call append(line(".") - 1, "")<cr>k', { desc = "insert line above" })
 
 keymap.set("n", "<leader>tt", function()
-    local current_tabstop = vim.opt.tabstop:get();
+	local current_tabstop = vim.opt.tabstop:get()
 	if current_tabstop == 4 then
 		vim.opt.tabstop = 2
 		vim.opt.shiftwidth = 2

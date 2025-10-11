@@ -11,7 +11,7 @@ return {
 			harpoon_ui.toggle_quick_menu()
 		end, { desc = "Toggle harpoon ui" })
 
-		keymap.set("n", "<leader>m", function()
+		keymap.set("n", "<leader>q", function()
 			harpoon_ui.add_file()
 		end, { desc = "Mark file" })
 

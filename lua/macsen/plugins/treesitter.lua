@@ -59,9 +59,32 @@ return {
 			end,
 		})
 
+        vim.api.nvim_create_autocmd({ "FileType" }, {
+            pattern = "latex",
+            callback = function()
+                vim.bo.commentstring = "% %s"
+            end,
+        })
+
 		parser_config.zag = {
 			install_info = {
 				url = "https://github.com/macsencasaus/tree-sitter-zag",
+				files = { "src/parser.c" },
+				branch = "main",
+			},
+		}
+
+		vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+			pattern = "*.glorp",
+			callback = function()
+				vim.bo.filetype = "glorp"
+				vim.bo.commentstring = "# %s"
+			end,
+		})
+
+		parser_config.glorp = {
+			install_info = {
+				url = "https://github.com/macsencasaus/tree-sitter-glorp",
 				files = { "src/parser.c" },
 				branch = "main",
 			},
@@ -78,13 +101,6 @@ return {
 			pattern = "*.ys",
 			callback = function()
 				vim.bo.filetype = "y86"
-			end,
-		})
-
-		vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-			pattern = "*.glorp",
-			callback = function()
-				vim.bo.filetype = "glorp"
 			end,
 		})
 
