@@ -30,7 +30,7 @@ opt.splitright = true
 opt.splitbelow = true
 
 -- opt.wrap = true
-opt.laststatus = 0
+opt.laststatus = 3
 opt.statusline = ""
 
 -- opt.fillchars:append({ horiz = " ", horizup = " ", horizdown = " ", verthoriz = " ", vert = " ", vertleft = " ", vertright = " " })
@@ -39,7 +39,7 @@ o.foldmethod = "expr"
 o.foldexpr = "nvim_treesitter#foldexpr()"
 opt.foldlevel = 99
 
--- o.showmode = false
+o.showmode = false
 
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "haskell",
