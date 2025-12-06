@@ -52,3 +52,12 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.filetype.add({ extension = { templ = "templ" } })
 
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
+vim.opt.list = true
+vim.opt.listchars = {
+	tab = "×›",
+	extends = "»",
+	precedes = "«",
+	nbsp = "‡",
+	trail = "×",
+}
