@@ -23,6 +23,11 @@ return {
 				opts.desc = "Show LSP definitions"
 				keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>zz", opts) -- show lsp definitions
 
+				opts.desc = "Open LSP definition in vertical tab"
+				keymap.set("n", "gv", function()
+					require("telescope.builtin").lsp_definitions({ jump_type = "vsplit" })
+				end, opts) -- show lsp definitions
+
 				opts.desc = "Show LSP implementations"
 				keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>zz", opts) -- show lsp implementations
 
