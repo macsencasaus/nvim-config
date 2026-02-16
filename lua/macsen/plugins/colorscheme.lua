@@ -9,9 +9,9 @@ return {
 		dependencies = {
 			"rktjmp/lush.nvim",
 		},
-        config = function()
-            vim.cmd("colorscheme rosebones")
-        end,
+		config = function()
+			vim.cmd("colorscheme rosebones")
+		end,
 	},
 	{
 		"folke/tokyonight.nvim",
@@ -19,10 +19,10 @@ return {
 		priority = 1000,
 		opts = {},
 	},
-    {
-        "Mofiqul/vscode.nvim",
-        lazy = false,
-        priority = 1000,
-        opts = {},
-    }
+	{
+		"Mofiqul/vscode.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {},
+	},
 }

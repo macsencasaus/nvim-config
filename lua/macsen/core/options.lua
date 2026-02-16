@@ -55,7 +55,7 @@ vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,
 
 vim.opt.list = true
 vim.opt.listchars = {
-	tab = "×›",
+	tab = "››",
 	extends = "»",
 	precedes = "«",
 	nbsp = "‡",
