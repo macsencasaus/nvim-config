@@ -57,6 +57,20 @@ return {
 
 				opts.desc = "Restart LSP"
 				keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
+
+                -- Turn off diagnostics by default
+				-- vim.diagnostic.enable(false)
+
+				vim.keymap.set("n", "<leader>td", function()
+					local current = vim.diagnostic.is_enabled()
+					if current then
+						vim.diagnostic.enable(false)
+						print("Diagnostics disabled")
+					else
+						vim.diagnostic.enable()
+						print("Diagnostics enabled")
+					end
+				end, { desc = "Toggle diagnostics" })
 			end,
 		})
 
