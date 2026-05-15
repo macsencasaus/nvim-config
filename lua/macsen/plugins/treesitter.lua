@@ -2,6 +2,8 @@ return {
 	"nvim-treesitter/nvim-treesitter",
 	event = { "BufReadPre", "BufNewFile" },
 	build = ":TSUpdate",
+	lazy = false,
+	branch = "master",
 	config = function()
 		local treesitter = require("nvim-treesitter.configs")
 
@@ -59,12 +61,12 @@ return {
 			end,
 		})
 
-        vim.api.nvim_create_autocmd({ "FileType" }, {
-            pattern = "latex",
-            callback = function()
-                vim.bo.commentstring = "% %s"
-            end,
-        })
+		vim.api.nvim_create_autocmd({ "FileType" }, {
+			pattern = "latex",
+			callback = function()
+				vim.bo.commentstring = "% %s"
+			end,
+		})
 
 		parser_config.zag = {
 			install_info = {
